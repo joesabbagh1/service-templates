@@ -1,10 +1,12 @@
-//@ts-nocheck
-
-import { readFileSync } from "fs"
+import { readFileSync, writeFileSync } from "fs"
 import { configure, render } from "nunjucks"
 import yargs from "yargs"
 
-type buildJSONDockerFile = { preInstallCommands: string[] }
+type buildJSONDockerFile = {
+  InstallCommand: string
+  preInstallCommands: string[]
+  postInstallCommands: string[]
+}
 
 type buildJSON = {
   ServiceName: string
@@ -15,6 +17,7 @@ type buildJSON = {
 function main() {
   const argv = yargs(process.argv.slice(2)).argv
 
+  //@ts-ignore
   const buildPath = argv["config"] as any
 
   const configurations = readFileSync(buildPath, { encoding: "utf-8" })
@@ -23,12 +26,9 @@ function main() {
 
   configure("templates", { autoescape: true })
 
-  const res = render("Dockerfile", {
-    ServiceName: configurationData.ServiceName,
-    ServiceType: configurationData.ServiceType,
-  })
+  const Dockerfile = render("Dockerfile", configurationData)
 
-  console.log(res)
+  writeFileSync("Dockerfile", Dockerfile)
 }
 
 main()

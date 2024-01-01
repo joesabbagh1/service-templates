@@ -1,5 +1,9 @@
 {
   "ServiceName": "ilovefrontend",
   "ServiceType": "frontend",
-  "Dockerfile": { "preInstallCommands": ["COPY myfile myfile"] }
+  "Dockerfile": {
+    "InstallCommands": "npm install",
+    "preInstallCommands": ["COPY myfile myfile"],
+    "postInstallCommands": ["RUN aaa lll", "RUN echo wowzers im so cool!"]
+  }
 }
