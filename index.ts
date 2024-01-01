@@ -1,11 +1,15 @@
 //@ts-nocheck
 
 import { readFileSync } from "fs"
+import { configure, render } from "nunjucks"
 import yargs from "yargs"
 
+type buildJSONDockerFile = { preInstallCommands: string[] }
+
 type buildJSON = {
-  Name: string
+  ServiceName: string
   ServiceType: string
+  Dockerfile: buildJSONDockerFile
 }
 
 function main() {
@@ -17,7 +21,14 @@ function main() {
 
   const configurationData = JSON.parse(configurations) as buildJSON
 
-  console.log(configurationData)
+  configure("templates", { autoescape: true })
+
+  const res = render("Dockerfile", {
+    ServiceName: configurationData.ServiceName,
+    ServiceType: configurationData.ServiceType,
+  })
+
+  console.log(res)
 }
 
 main()

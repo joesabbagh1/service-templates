@@ -1,4 +1,5 @@
 {
-  "Name": "frontend",
-  "ServiceType": "frontend"
+  "ServiceName": "ilovefrontend",
+  "ServiceType": "frontend",
+  "Dockerfile": { "preInstallCommands": ["COPY myfile myfile"] }
 }
