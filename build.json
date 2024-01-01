@@ -2,7 +2,7 @@
   "ServiceName": "ilovefrontend",
   "ServiceType": "frontend",
   "Dockerfile": {
-    "InstallCommands": "npm install",
+    "InstallCommand": "npm install",
     "preInstallCommands": ["COPY myfile myfile"],
     "postInstallCommands": ["RUN aaa lll", "RUN echo wowzers im so cool!"]
   }

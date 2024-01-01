@@ -7,7 +7,7 @@ ENV SERICE_TYPE "frontend"
 COPY myfile myfile
 
 
-RUN 
+RUN npm install
 
 
 RUN aaa lll
