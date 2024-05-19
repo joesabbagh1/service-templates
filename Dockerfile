@@ -10,9 +10,9 @@ COPY myfile myfile
 RUN npm install
 
 
-RUN aaa lll
+RUN yarn build
 
-RUN echo wowzers im so cool!
+RUN yarn start
 
 
 

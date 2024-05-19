@@ -4,6 +4,6 @@
   "Dockerfile": {
     "InstallCommand": "npm install",
     "preInstallCommands": ["COPY myfile myfile"],
-    "postInstallCommands": ["RUN aaa lll", "RUN echo wowzers im so cool!"]
+    "postInstallCommands": ["RUN yarn build", "RUN yarn start"]
   }
 }
